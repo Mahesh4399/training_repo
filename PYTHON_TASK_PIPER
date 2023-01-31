@@ -1,0 +1,42 @@
+# training_repo
+
+Piper PythonTask
+
+
+from piper.models.pipeline import Pipeline, RUN_IN_ONE_DATACENTER
+from datetime import timedelta, datetime
+from pipelines.core.uber_freight_data_platform.lib.constants import (
+    LOGGER,
+    UOwnUUID
+)
+from pipelines.core.uber_freight_data_platform.lib.defaults import build_default_args
+from piper.tasks.python_task import PythonTask
+def add_numbers(num1 = 5, num2 = 4):
+    sum = num1 + num2
+    logger.info("Sum: ",sum)
+default_args = build_default_args(
+    owner='airflow',
+    schedule_interval='0 * * * *',
+    start_date=datetime(2023, 1, 16),
+    retries=2,
+    retry_delay=timedelta(hours=1),
+)
+pipeline = Pipeline(
+    'booking_ingestion',
+    default_args=default_args,
+    schedule_interval=default_args['schedule_interval'],
+    create_time_uown="22a775b2-4a2b-43e1-8fb3-5b907f3c0577",
+    datacenter_choice_mode=RUN_IN_ONE_DATACENTER
+)
+task_1 = PythonTask(
+	task_id='transaction_data',
+	python_callable=add_numbers,
+	pipeline=pipeline
+)
+task_2 = PythonTask(
+	task_id='load_data',
+	python_callable=add_numbers,
+	pipeline=pipeline,
+)
+##here the expression is for running the task_1 first and then run the task_2
+task_1 >> task_2
