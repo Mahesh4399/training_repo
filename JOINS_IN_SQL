@@ -1,0 +1,75 @@
+JOINS_IN_SQL
+CREATE DATABASE testdb;
+use testdb;
+create table students(
+    id int,
+    name varchar(50),
+    marks int
+);
+insert into students values(1,'mahesh',93),(2,'jaya',37),(3,'mahe',90),(4,'rajesh',99),(5,'karthi',86),(6,'sonu',74);
+select * from students;
+--write a query to calculate the grades for a student by below criteria
+--marks >= 90 A+
+--marks <90 and >= 85 A
+--marks <85 and >= 75 B+
+--marks <75 and >= 60 B
+--marks <60 then C
+select id,
+       name,
+       marks
+       CASE
+             WHEN marks >=90 then 'A+'
+             WHEN marks <90 and >= 85 then 'A'
+             WHEN marks <85 and >= 75 then 'B+'
+             WHEN marks <75 and >= 60 then 'C'
+             else 'C'
+      end as grade
+from students;
+--Joins
+create table orders(
+    order_id int,
+    cust_id int,
+    order_date date,
+    shipper_id int
+);
+ create table customers(
+    cust_id int,
+    custname varchar(50),
+    country varchar(50)
+);
+insert into orders values(10308,2,'2022-09-15',3);
+insert into orders values(10309,30,'2022-09-16',1);
+insert into orders values(10310,41,'2022-09-19',2);
+insert into customers values(1,'neel','india');
+insert into customers values(2,'mahesh','aust');
+insert into customers values(3,'rajesh','USA');
+select * from orders;
+select * from customers;
+--perform inner JOIN
+--get the customer information for each order if value of customer is present in orders table
+--Inner join
+select  o.*, c.* from orders o inner join customers c on o.cust_id = c.cust_id;
+--right join
+select o.*, c.*   from customers c right join orders o on c.cust_id = o.cust_id;
+--left join
+select o.*, c.* from customers c left join orders o on c.cust_id = o.cust_id;
+--3rd table shippers
+--get the information of shippers name
+create table shippers(
+    ship_id int,
+    ship_name varchar(50)
+);
+insert into shippers values(1,'abc'),(2,'xyz');
+select * from shippers;
+--Inner join
+select c.*, s.*, o.*
+from orders o
+inner join customers c on o.cust_id = c.cust_id
+inner join shippers s on o.shipper_id = s.ship_id;
+create table employees(
+    emp_id int,
+    name varchar(50),
+    man_id int
+);
+insert into employees values(1,'mahesh',3),(2,'mahessssss',3),(3,'amit',4),(4,'rajesh',3),(5,'nikhil',null);
+select * from employees;
