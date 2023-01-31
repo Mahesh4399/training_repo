@@ -1,0 +1,204 @@
+SQL_BASICS
+CREATE DATABASE testdb;
+use testdb;
+create table employee(
+    id int,
+    emp_name varchar(50),
+    age int,
+    salary int
+);
+insert into employee values(1,'mahe',20,3000),(2,'mahesh',39,9283),(3,'jayu',09,92832),(4,'anu',28,29382),(5,'jaysh',28,29383);
+select * from employee;
+select emp_name as emp_temp_data, emp_name
+from employee
+where emp_name in ('jayu','mahesh');
+update employee set emp_name = 'karthik';
+select * from employee;
+update employee set age = 20;
+select * from employee;
+drop employee emp_name = 'karthik';
+update employee set salary = 23872 where age = 9;
+select * from employee;
+--to see the limit of the records
+select * from employee limit 2;
+--sorting data in mysql by 'order by'
+select * from employee order by id;
+select * from employee order by salary desc;
+select * from employee order by salary asc;
+select * from employee order by id desc, salary asc;
+--find the employee who is getting max salary?
+select * from employee order by salary desc limit 1;
+select * from employee order by salary asc limit 1;
+--list all the employess who is gettig salary more than 2000
+select * from employee where salary > 2000;
+--list all the employees who is getting salary less than 2000
+select * from employee where salary < 2000;
+--filetr the records where enmployee age = 20
+select * from employee where age = 20;
+--filetr the records where enmployee age = 20
+select * from employee where age != 20;
+select * from employees;
+create table employees(
+    id int,
+    emp_name varchar(50),
+    age int,
+    salary int
+);
+insert into employees values(1,'mahe',20,3000),(2,'mahesh',39,9283),(3,'jayu',09,92832),(4,'anu',28,29382),(5,'jaysh',28,29383);
+select * from employees;
+--find the employees who joined the company age 28 and there salary is less than 5000
+select * from employee where age = 28 and salary > 5000;
+-- how to use the between operation in where clause
+--get all teh employees who has age between 15 to 30
+select * from employees where age between 15 and 30;
+--get all teh employees who has salary between 3000 to 20000
+select * from employees where salary between 3000 and 20000;
+---how to use liek operator
+--zero one or more than one character
+--only one CHARACTER
+--get all the employees whos name starts with 's'
+select * from employees where emp_name like 'a%';
+--get all the employees whos name starts with 'mah'
+select * from employees where emp_name like 'mah%';
+--get all the employees whos name ends with 'h'
+select * from employees where emp_name like '%h';
+select * from employees where emp_name like 'm%h';
+--get all those employees whos name will have exact 5 characters
+select * from employees where emp_name like '_____';
+GROUP BY
+CREATE DATABASE testdb;
+use testdb;
+create table employee(
+    id int,
+    emp_name varchar(50),
+    age int,
+    salary int
+);
+insert into employee values(1,'mahe',20,3000),(2,'mahesh',39,9283),(3,'jayu',09,92832),(4,'anu',28,29382),(5,'jaysh',28,29383);
+select * from employee;
+insert into employee values(10,'mahe',23,null),(21,'null',39,9282);
+-- to check the null values in the table
+select * from employee where emp_name is null;
+--to check the not null values
+select * from employee where emp_name is not null;
+--table and data for group By
+create table orders(
+    cust_id int,
+    order_id int,
+    country varchar(50),
+    state varchar(50)
+);
+insert into orders values(1,100,'USA','karnataka');
+insert into orders values(2,101,'india','kerala');
+insert into orders values(3,104,'USA','karnataka');
+insert into orders values(4,105,'india','orissa');
+insert into orders values(5,140,'USA','karnataka');
+insert into orders values(6,160,'india','kerala');
+insert into orders values(7,180,'UK','delhi');
+insert into orders values(8,900,'UK','kerala');
+insert into orders values(9,105,'india','kerala');
+insert into orders values(10,120,'USA','kerala');
+insert into orders values(11,150,'UK','ranchi');
+insert into orders values(12,120,'UK','noida');
+select * from orders;
+--calculate total orders placed country wise
+select country, count(*) as total_count from orders group by country;
+select * from employee;
+--find the total salary by each age group
+select age, sum(salary) as total_salary_by_age from employee group by age;
+--calculate different aggregated metrices for salary COLUMN
+select age,
+        sum(salary) as total_salary_each_age,
+        max(salary) as min_salary_each_age,
+        min(salary) as max_salary_each_age
+from employee group by age;
+--GROUP BY HAVING
+--find the country where only one order was placed
+select country from orders group by country having count(*)=1;
+select country, distinct(state) from orders;
+--print distinct states present in the dataset in each country
+select country, GROUP_CONCAT(state) as states_in_country from orders group by country;
+select country, GROUP_CONCAT(distinct state) as states_in_country from orders group by country;
+select country, GROUP_CONCAT(distinct state order by state desc) as states_in_country from orders group by country;
+--=--SUBQUERY
+create table emp(
+    id int,
+    emp_name varchar(50),
+    salary int
+);
+insert into emp values(1,'mahe',3000),(2,'mahesh',9283),(3,'jayu',92832),(4,'anu',29382),(5,'jaysh',29383);
+select * from emp;
+--print all those records who are getting more salary than mahesh
+select * from emp where salary > (select salary from emp where emp_name = 'mahesh');
+
+
+
+
+SQL_BASIC_COMMANDS
+CREATE DATABASE sqldb;
+use sqldb;
+create table testtable(
+    id int,
+    name varchar(50),
+    address varchar (50)
+);
+insert into testtable values(1,'mahesh','bellary'),(2,'jay','bangalore');
+select * from testtable;
+create table testtbl(
+    id int,
+    name varchar(50),
+    age int,
+    constraint pk primary key (id)
+);
+select * from testtbl;
+insert into testtbl values (1,'mahesh',20);
+insert into testtbl values (3,'mahesh',25);
+create table customers(
+    cust_id int,
+    name varchar(50),
+    age int,
+    constraint pk primary key (cust_id)
+);
+create table orders(
+    order_id int,
+    order_num int,
+    customer_id int,
+    constraint pk primary key (order_id),
+    constraint fk foreign key (customer_id) REFERENCES customers(cust_id)
+);
+truncate table testtbl;
+select * from testtbl;
+create table if not exists employee(
+    id int,
+    name varchar(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city varchar(100)
+);
+insert into employee values(1,'mahe',25,'2022-08-09',1000,'bellary');
+insert into employee values(2,'mahesh',33,'2022-08-09',5000,'bangalore');
+insert into employee values(3,'jaya',23,'2021-08-09',6000,'china');
+insert into employee values(5,'jayash',24,'2021-08-09',6000,'bangal');
+insert into employee values(6,'kar',24,'2021-08-09',6000,'bangal');
+select * from employee;
+select count(*) as total_count from employee;
+select name as employee_name, salary as employee_salary from employee;
+select distinct(hiring_date) from employee;
+select count(distinct (age)) from employee;
+--increment each employee salary by 20% and display final salary with new salary
+select id,
+       name,
+       salary as old_salary,
+       (salary + salary * 0.2) as new_salary
+from employee;
+update employee set age = 20;
+select * from employee;
+--update the salary of teh employee after giving 20% AUTO_INCREMENT
+update employee set salary = (salary + salary *0.2 );
+--- update the salary of the employees who joined the company in 2022-08-09 to 80000;
+update employee set salary = 80000 where hiring_date = '2022-08-09';
+select * from employee;
+--delete specific records from table using delete command
+--delete records of this employees who joined company on this date 2022-08-09
+delete from employee where hiring_date = '2022-08-09';
