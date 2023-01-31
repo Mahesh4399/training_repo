@@ -73,3 +73,33 @@ create table employees(
 );
 insert into employees values(1,'mahesh',3),(2,'mahessssss',3),(3,'amit',4),(4,'rajesh',3),(5,'nikhil',null);
 select * from employees;
+
+
+
+
+-- Active: 1675056562779@@127.0.0.1@3306
+CREATE database testdb;
+use testdb;
+
+create table student(
+    EnrollNo int,
+    studentname varchar(50),
+    address varchar(50)
+);
+
+create table studentcourse(
+    courseid int,
+    EnrollNo int
+);
+
+insert into student values(1001,'geek1','geeksquiz1'),(1002,'geek2','geeksquiz2'),(1003,'geek3','geeksquiz3'),(1004,'geek4','geeksquiz4');
+
+insert into studentcourse values(1,1001),(2,1001),(3,1001),(4,1002),(5,1003);
+
+select * from student;
+select * from studentcourse;
+
+select s.*
+from student s
+join studentcourse sc
+on s.EnrollNo = sc.EnrollNo;
