@@ -1,0 +1,51 @@
+CREATE DATABASE db;
+use db;
+create table students(
+    stud_id int,
+    name varchar(50),
+    email varchar(100),
+    city varchar(50)
+);
+insert into students values(1,'shashank','abc@gmail.com','luckow');
+insert into students values(2,'rahul','abc1@gmail.com','mp');
+insert into students values(3,'amit','abc2@gmail.com','noida');
+insert into students values(4,'nikhil','abc3@gmail.com','bglr');
+insert into students values(5,'sunny','abc4@gmail.com','bglr');
+
+create table students2(
+    stud_id int,
+    name varchar(50),
+    email varchar(100),
+    city varchar(50)
+);
+
+insert into students2 values(1,'shashank','abc@gmail.com','lucknow');
+insert into students2 values(6,'anu','abc5@gmail.com','mp');
+insert into students2 values(8,'mohit','abc7@gmail.com','noida');
+insert into students2 values(10,'sagar','abc10@gmail.com','bglr');
+insert into students2 values(5,'sunny','abc4@gmail.com','bglr');
+
+select * from students;
+select * from students2;
+
+--Query for UNION operation
+--we are organising a tournment from college one and college 2, we need details of students from both the college
+
+select * from students
+union 
+select * from students2;
+
+--Case-1 not failed
+select * from students
+union all
+select * from students2;
+
+--case-2 not failed
+select stud_id, name from students
+UNION
+select name, stud_id from students2;
+
+--case-3 not failed -- the column name is changed to the alias name 
+select stud_id as stud_id_college_1, name from students
+UNION
+select stud_id as stud_id_college_2, name from students2
