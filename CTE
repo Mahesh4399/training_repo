@@ -1,0 +1,39 @@
+
+----CTE
+    -- * knows as WITH CLAUSE
+    -- * two types of WITH CLAUSE
+            --Iterative
+            --Recursive
+
+create table amazon(
+    emp_id int,
+    emp_name varchar(50),
+    dept_id int,
+    salary int
+);
+
+insert into amazon values(1,'shashank',100,10000);
+insert into amazon values(2,'rahul',100,20000);
+insert into amazon values(3,'amit',101,15000);
+insert into amazon values(4,'mohit',102,17000);
+insert into amazon values(5,'nikhil',102,30000);
+
+create table department(
+    dep_id int,
+    dep_name varchar(50)
+);
+
+insert into department values(100,'software');
+insert into department values(101,'HR');
+insert into department values(103,'IT');
+insert into department values(104,'finance');
+
+select * from amazon;
+select * from department;
+
+--print the name of department along with the total salary paid in each department
+
+select d.dep_name, tmp.total_salary
+from (select dept_id, sum(salary) as total_salary from amazon group by dept_id) tmp
+inner join department d on tmp.dept_id = d.dep_id;
+
