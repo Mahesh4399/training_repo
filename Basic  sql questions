@@ -80,3 +80,98 @@ select * from Orders;
 select distinct c.customer_id, c.first_name
 from Customers c 
 join Orders o on c.customer_id = o.customer_id
+
+==================================
+
+-- Active: 1676456619453@@127.0.0.1@3306
+CREATE DATABASE db;
+
+use db;
+
+CREATE TABLE Orders (
+  order_id INT PRIMARY KEY,
+  customer_id INT,
+  order_date DATE,
+  total_amount DECIMAL
+);
+
+INSERT INTO Orders (order_id, customer_id, order_date, total_amount)
+VALUES
+  (1, 1001, '2022-01-01', 120),
+  (2, 1002, '2022-01-02', 80),
+  (3, 1003, '2022-01-03', 200),
+  (4, 1001, '2022-01-04', 50),
+  (5, 1002, '2022-01-05', 75);
+
+  select * from Orders;
+
+  CREATE TABLE Customers (
+  customer_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  email VARCHAR(100),
+  phone VARCHAR(20)
+);
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone)
+VALUES
+  (1001, 'John', 'Doe', 'johndoe@gmail.com', '1234'),
+  (1002, 'Jane', 'Smith', 'janesmith@yahoo.com', '5678'),
+  (1003, 'David', 'Lee', 'davidlee@hotmail.com', '9876'),
+  (1004, 'Emma', 'Jones', 'emmajones@gmail.com', '2468'),
+  (1005, 'Michael', 'Brown', 'michaelbrown@gmail.com', '1357');
+
+  select * from Customers;
+
+
+--What are the columns in the Orders table?
+--What is the primary key for the Orders table?
+--What is the data type for the order_date column in the Orders table?
+--What are the columns in the Customers table?
+--What is the primary key for the Customers table?
+--What is the data type for the email column in the Customers table?
+--How many orders were placed on January 1, 2022?
+--What is the total amount of all orders in the Orders table?
+--Who is the customer with the email address 'emmajones@gmail.com'?
+--What is the phone number of the customer with the last name 'Lee'?
+
+----med level----
+--How many customers have placed an order?
+--What is the average total amount of an order in the Orders table?
+--Which customer has placed the highest total amount of orders in the Orders table?
+--How many orders were placed by each customer in the Orders table?
+--Which customer has placed the most recent order in the Orders table?
+--What is the earliest order date in the Orders table?
+--Which customer has the longest last name in the Customers table?
+--What is the email domain used most frequently by customers in the Customers table?
+--Which customer has placed an order with the highest total amount in 2022?
+--How many orders were placed in the month of January in the Orders table?
+
+
+--What are the columns in the Orders table?
+
+SELECT column_name 
+FROM information_schema.columns 
+WHERE table_name = 'Orders';
+
+--What is the primary key for the Orders table?
+
+select * from Orders;
+--order_id is the primary key for this
+
+--What is the data type for the order_date column in the Orders table?
+--answer = date
+
+--What are the columns in the Customers table?
+select column_name
+from information_schema.columns
+where table_name = 'Customers';
+
+
+--What is the primary key for the Customers table?
+--answer = 
+select * from Customers;
+SELECT *
+FROM Customers;
+
+show tables;
