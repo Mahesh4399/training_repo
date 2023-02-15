@@ -1,0 +1,82 @@
+-- Active: 1676456619453@@127.0.0.1@3306
+CREATE DATABASE db;
+
+use db;
+
+CREATE TABLE Orders (
+  order_id INT PRIMARY KEY,
+  customer_id INT,
+  order_date DATE,
+  total_amount DECIMAL
+);
+
+INSERT INTO Orders (order_id, customer_id, order_date, total_amount)
+VALUES
+  (1, 1001, '2022-01-01', 120),
+  (2, 1002, '2022-01-02', 80),
+  (3, 1003, '2022-01-03', 200),
+  (4, 1001, '2022-01-04', 50),
+  (5, 1002, '2022-01-05', 75);
+
+  select * from Orders;
+
+  CREATE TABLE Customers (
+  customer_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  email VARCHAR(100),
+  phone VARCHAR(20)
+);
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone)
+VALUES
+  (1001, 'John', 'Doe', 'johndoe@gmail.com', '1234'),
+  (1002, 'Jane', 'Smith', 'janesmith@yahoo.com', '5678'),
+  (1003, 'David', 'Lee', 'davidlee@hotmail.com', '9876'),
+  (1004, 'Emma', 'Jones', 'emmajones@gmail.com', '2468'),
+  (1005, 'Michael', 'Brown', 'michaelbrown@gmail.com', '1357');
+
+  select * from Customers;
+
+--What is the total number of orders in the Orders table?
+--Who are the customers with the highest total order amounts in the Orders table?
+--Which orders in the Orders table were placed by customer with ID 1001?
+--What is the average total order amount for each customer in the Orders table?
+--Which customers in the Customers table have placed orders in the Orders table?
+
+
+--What is the total number of orders in the Orders table?
+select count(*) as total_number_of_orders
+from Orders;
+
+--Who are the customers with the highest total order amounts in the Orders table?
+select *
+from Orders o
+join Customers c on o.Customer_id = c.Customer_id
+GROUP BY o.Customer_id 
+ORDER BY o.total_amount DESC;
+
+SELECT *
+FROM Orders o
+JOIN Customers c ON o.Customer_id = c.Customer_id
+GROUP BY c.Customer_id, o.Order_id;
+
+--Which orders in the Orders table were placed by customer with ID 1001?
+select * 
+from Orders 
+where Customer_id = '1001';
+
+--What is the average total order amount for each customer in the Orders table?
+select * from Orders;
+
+select Customer_id, avg(total_amount) as total_order_amount
+from Orders
+group by Customer_id;
+
+--Which customers in the Customers table have placed orders in the Orders table?
+select * from Customers;
+select * from Orders;
+
+select distinct c.customer_id, c.first_name
+from Customers c 
+join Orders o on c.customer_id = o.customer_id
