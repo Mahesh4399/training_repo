@@ -1,0 +1,29 @@
+--imports
+import csv
+import pandas as pd
+
+--creating a schema
+fieldnames = ['Name', 'Age','marks', 'Country']
+
+--inserting the values into the table 
+data = [
+    {'Name': 'Joan', 'Age': 34, 'marks':98, 'Country': 'Australia'},
+    {'Name': 'mahesh', 'Age': 92, 'marks':98, 'Country': 'India'},
+    {'Name': 'Rajesh', 'Age': 22, 'marks':98, 'Country': 'USA'}
+]
+
+--writing that data into a csv file to store
+with open('test_file.csv', 'w') as csvfile:
+
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+
+    for row in data:
+        writer.writerow(row)
+
+--reading the csv data 
+df = pd.read_csv('test_file.csv')
+
+--printing the df excluding the index values
+print(df.to_string(index=False))
