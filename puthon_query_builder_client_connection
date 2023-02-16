@@ -1,0 +1,48 @@
+--imports
+from queryrunner_client import Client
+import pandas as pd
+
+qr = Client(user_email='mahesh@gmail.com') 
+
+query = "SELECT * FROM table_name"
+
+cursor = qr.execute('presto', query, pii=True)
+
+rows = cursor.fetchall()
+
+dicts = [dict(row) for row in rows]
+
+df = pd.DataFrame(dicts)
+
+--see the results oytput from the table 
+print(df)
+
+--performing aggregations on the result df
+total_sum = df['total_carrier_price'].sum()
+
+count_value = df['total_carrier_price'].count()
+
+max_value = df['total_carrier_price'].max()
+
+min_value = df['total_shipper_price'].min()
+
+mean_value = df['total_shipper_price'].mean()
+
+print(total_sum)
+print(count_value)
+print(max_value)
+print(min_value)
+print(mean_value)
+
+
+assigning the aggregations into a single dataframe so that the data can be written into the csv format in the next line
+agg_df = pd.DataFrame({
+    'total_sum': [total_sum],
+    'mean_value': [mean_value],
+    'count_value': [count_value],
+    'max_value': [max_value],
+    'min_value': [min_value]
+})
+
+--writing the aggregated data to a CSV file
+agg_df.to_csv('aggregated_data.csv', index=False)
