@@ -1,0 +1,79 @@
+--Hive datatypes
+
+Boolean: Boolean values represent true or false. Example: true, false.
+
+TINYINT: TINYINT is an 8-bit signed integer. Example: 15.
+
+SMALLINT: SMALLINT is a 16-bit signed integer. Example: 1000.
+
+INT: INT is a 32-bit signed integer. Example: 123456.
+
+BIGINT: BIGINT is a 64-bit signed integer. Example: 9876543210.
+
+FLOAT: FLOAT is a single-precision floating-point number. Example: 3.14159.
+
+DOUBLE: DOUBLE is a double-precision floating-point number. Example: 2.71828.
+
+DECIMAL: DECIMAL is a fixed-point number with a user-specified precision and scale. Example: 12.345.
+
+STRING: STRING is a sequence of characters. Example: "Hello, World!".
+
+TIMESTAMP: TIMESTAMP represents a point in time. Example: "2023-02-24 12:34:56.789".
+
+DATE: DATE represents a date. Example: "2023-02-24".
+
+ARRAY: ARRAY is an ordered collection of elements of the same type. Example: [1, 2, 3].
+
+MAP: MAP is an unordered collection of key-value pairs. Example: {"name": "Alice", "age": 30}.
+
+STRUCT: STRUCT is a collection of named fields, each with its own data type. Example: {"name": "Bob", "age": 25}.
+
+--SQL Datatypes
+
+INT or INTEGER: An integer type for storing whole numbers. Example: 5.
+
+BIGINT: A large integer type for storing very large whole numbers. Example: 1234567890.
+
+FLOAT: A single-precision floating-point number type for storing decimal values. Example: 3.14159.
+
+DOUBLE: A double-precision floating-point number type for storing decimal values with more precision than FLOAT. Example: 2.71828.
+
+DECIMAL(p, s): A fixed-point decimal type with a user-defined precision and scale. Example: DECIMAL(5, 2) can store values like 123.45.
+
+CHAR(n): A fixed-length character type for storing strings with a specific length. Example: CHAR(10) can store strings with a length of 10 characters.
+
+VARCHAR(n): A variable-length character type for storing strings with a maximum length of n characters. Example: VARCHAR(20) can store strings with a maximum length of 20 characters.
+
+DATE: A date type for storing dates. Example: '2023-02-24'.
+
+TIME: A time type for storing time values. Example: '12:34:56'.
+
+TIMESTAMP: A date and time type for storing date and time values. Example: '2023-02-24 12:34:56'.
+
+BOOLEAN: A boolean type for storing true or false values. Example: TRUE or FALSE.
+
+BLOB: A binary large object type for storing binary data. Example: 0x1234567890abcdef.
+
+--Python datatypes
+
+Integer (int): An integer type for storing whole numbers. Example: 5.
+
+Float: A floating-point number type for storing decimal values. Example: 3.14159.
+
+String (str): A sequence of characters type for storing text. Example: "Hello, World!".
+
+Boolean (bool): A boolean type for storing true or false values. Example: True or False.
+
+List: An ordered collection of elements of any type. Example: [1, 2, "three"].
+
+Tuple: An ordered, immutable collection of elements of any type. Example: (1, 2, "three").
+
+Set: An unordered collection of unique elements of any type. Example: {1, 2, "three"}.
+
+Dictionary (dict): An unordered collection of key-value pairs. Example: {"name": "Alice", "age": 30}.
+
+None: A special type representing the absence of a value. Example: None.
+
+Byte (bytes): An immutable sequence of bytes. Example: b"hello".
+
+Byte array (bytearray): A mutable sequence of bytes. Example: bytearray(b"hello").
