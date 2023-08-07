@@ -1,5 +1,5 @@
 Microsoft Azure 
-
+===============
 Azure Architecture 
 SQL Database -> ADF -> ADLS Gen2 (Bronze zone, Silver zone, Gold zone) Azure Databricks -> Azure Synapse Analytics -> Power BI
 
@@ -15,3 +15,21 @@ Data Ingestion           = ADF
 Transformations          = ADB
 Loading the data         = azure Synapse analytics
 Reports                  = Power BI
+
+POC Agebda
+
+1) Environment setup
+2) Data Ingestion
+3) Data Transfromation
+4) Data Loading
+5) Data Reporting
+6) End to End pipeline Testing
+
+
+
+
+
+
+
+
+
