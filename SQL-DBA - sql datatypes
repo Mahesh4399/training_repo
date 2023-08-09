@@ -1,0 +1,27 @@
+Numeric Data Types:
+
+INT or INTEGER: Represents whole numbers (e.g., -1, 0, 42). - 4 Bytes
+SMALLINT: Similar to INT but with a smaller range. -  2 bytes of storage.
+BIGINT: Represents large whole numbers. -  8 bytes of storage.
+DECIMAL or NUMERIC: Represents fixed-point numbers with a specified precision and scale (e.g., 10.25).
+FLOAT: Represents floating-point numbers with approximate precision.
+
+
+Character String Data Types:
+
+CHAR(n): Fixed-length character string with a specified length 'n'.
+VARCHAR(n): Variable-length character string with a maximum length 'n'.
+TEXT: Variable-length character string with no predefined limit.
+
+
+Date and Time Data Types:
+
+DATE: Represents a date (year, month, day).
+TIME: Represents a time of day (hours, minutes, seconds).
+DATETIME or TIMESTAMP: Represents both date and time.(year, month, day hours, minutes, seconds)
+
+
+Boolean Data Type:
+
+BOOLEAN or BOOL: Represents true or false values.
+
