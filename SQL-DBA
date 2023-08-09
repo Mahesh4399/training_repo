@@ -1,0 +1,220 @@
+SQL
+
+1) First we will create a sample dataset
+
+-- Creating the Authors table
+CREATE TABLE Authors (
+    author_id INT PRIMARY KEY,
+    author_name VARCHAR(100)
+);
+
+-- Creating the Books table
+CREATE TABLE Books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(200),
+    author_id INT,
+    publication_year INT,
+    price DECIMAL(10, 2)
+);
+
+-- Inserting data into the Authors table
+INSERT INTO Authors (author_id, author_name)
+VALUES
+    (1, 'Jane Smith'),
+    (2, 'John Doe'),
+    (3, 'Emily Johnson');
+
+-- Inserting data into the Books table
+INSERT INTO Books (book_id, title, author_id, publication_year, price)
+VALUES
+    (1, 'Book A', 1, 2020, 29.99),
+    (2, 'Book B', 2, 2018, 19.99),
+    (3, 'Book C', 1, 2022, 34.99),
+    (4, 'Book D', 3, 2015, 15.00);
+
+=====================================================================================================================================
+
+2)  SQL Commands
+
+Data Definition Language (DDL):
+
+CREATE: Create a new database object (table, index, etc.).
+ALTER: Modify the structure of an existing database object.
+DROP: Delete an existing database object.
+TRUNCATE: Remove all rows from a table (while keeping the structure).
+RENAME: Rename an existing database object.
+COMMENT: Add comments to columns or tables for documentation.
+
+Data Manipulation Language (DML):
+
+SELECT: Retrieve data from one or more tables.
+INSERT: Add new rows of data into a table.
+UPDATE: Modify existing data in a table.
+DELETE: Remove rows from a table.
+MERGE: Conditionally insert, update, or delete rows based on a condition.
+EXPLAIN: Analyze how a statement will be executed.
+CALL: Execute a database procedure or function.
+
+Transaction Control Language (TCL):
+
+COMMIT: Save changes made during the current transaction.
+ROLLBACK: Undo changes made during the current transaction.
+SAVEPOINT: Set a point within a transaction to which you can later roll back.
+
+Data Query Language (DQL):
+
+SELECT: Retrieve data from one or more tables.
+
+Data Control Language (DCL):
+
+GRANT: Give specific privileges to users or roles.
+REVOKE: Remove specific privileges from users or roles.
+
+Data Integrity Commands:
+
+CHECK: Specify constraints on a column for data validation.
+PRIMARY KEY: Define a primary key constraint on a column or columns.
+FOREIGN KEY: Create a foreign key relationship between tables.
+UNIQUE: Ensure the values in a column are unique.
+DEFAULT: Set a default value for a column.
+
+Indexes and Performance Commands:
+
+CREATE INDEX: Create an index on one or more columns.
+DROP INDEX: Remove an index from a table.
+ANALYZE: Update optimizer statistics for better query performance.
+
+============================================================================================================================================
+SQL Commands examples
+
+1) DDL Examples
+
+CREATE:
+Create a new table called Genres with an genre_id and genre_name column:
+
+CREATE TABLE Genres (
+    genre_id INT,
+    genre_name VARCHAR(100)
+);
+
+ALTER:
+Add a new column called isbn to the Books table:
+
+ALTER TABLE Books
+ADD isbn VARCHAR(13);
+
+DROP:
+Drop the Genres table:
+
+DROP TABLE Genres;
+
+TRUNCATE:
+Remove all rows from the Books table while keeping its structure:
+
+TRUNCATE TABLE Books;
+
+RENAME:
+Rename the title column in the Books table to book_title:
+
+ALTER TABLE Books
+RENAME COLUMN title TO book_title;
+
+COMMENT:
+Add a comment to the publication_year column in the Books table:
+
+COMMENT ON COLUMN Books.publication_year IS 'Year the book was published';
+
+=================================================================================================================================================
+DML commands
+
+SELECT:
+
+Retrieve the titles of all books:
+
+SELECT title
+FROM Books;
+
+INSERT:
+
+Add a new book to the Books table:
+
+INSERT INTO Books (book_id, title, author_id, publication_year, price)
+VALUES (5, 'Book E', 2, 2023, 24.99);
+
+UPDATE:
+
+Update the price of a specific book:
+
+UPDATE Books
+SET price = 27.50
+WHERE book_id = 3;
+
+DELETE:
+
+Remove a book from the Books table:
+
+DELETE FROM Books
+WHERE book_id = 4;
+
+=====================================================================================================================================
+3) TCL - Transaction control Language
+
+COMMIT: Save changes made during the current transaction:
+
+BEGIN TRANSACTION;
+
+-- Update a book's price
+UPDATE Books
+SET price = 29.99
+WHERE book_id = 1;
+
+-- Save changes
+COMMIT;
+
+
+ROLLBACK: Undo changes made during the current transaction:
+
+BEGIN TRANSACTION;
+
+-- Update a book's price
+UPDATE Books
+SET price = 24.99
+WHERE book_id = 2;
+
+-- Undo changes
+ROLLBACK;
+
+
+SAVEPOINT: Set a savepoint within a transaction:
+
+BEGIN TRANSACTION;
+
+-- Update a book's price
+UPDATE Books
+SET price = 19.99
+WHERE book_id = 3;
+
+-- Set a savepoint
+SAVE TRANSACTION MySavepoint;
+
+-- Update another book's price
+UPDATE Books
+SET price = 14.99
+WHERE book_id = 4;
+
+-- Roll back to the savepoint
+ROLLBACK TRANSACTION MySavepoint;
+=================================================================================================================================
+DCL: Data Control Language
+
+GRANT: Give specific privileges to a user on the Books table:
+
+-- Grant SELECT and UPDATE privileges to a user named 'bookstore_user'
+GRANT SELECT, UPDATE ON dbo.Books TO bookstore_user;
+
+
+REVOKE: Remove specific privileges from a user on the Books table:
+
+-- Revoke UPDATE privilege from the user 'bookstore_user'
+REVOKE UPDATE ON dbo.Books FROM bookstore_user;
+==================================================================================================================================
