@@ -202,3 +202,99 @@ select * from employee;
 --delete specific records from table using delete command
 --delete records of this employees who joined company on this date 2022-08-09
 delete from employee where hiring_date = '2022-08-09';
+==================================================================================================================================
+
+use master
+
+create database test
+
+use test
+
+create table test (
+Id INT,
+Name VARCHAR(50),
+Subject VARCHAR(50))
+
+insert into test values (1,'Mahe', 'Bio')
+insert into test values (2,'Mahesh','Che')
+insert into test(ID,Name) values (3,'Maheshwar')
+insert into test values (4,'Reddy','Phy')
+insert into test(place) values ('bly')
+
+Select * from test
+
+alter table test add place VARCHAR(50)
+
+UPDATE test
+SET Place = 'Bly'
+Where Id=1
+
+UPDATE test
+SET Place = 'Bglr'
+WHERE Id = 2
+
+UPDATE test
+SET Place = 'Kar'
+WHERE Id = 3
+
+UPDATE test
+SET Id = 4
+WHERE Place = 'bly'
+
+UPDATE test
+SET Id = 5
+WHERE place = 'bly'
+
+UPDATE test
+SET subject = 'sci'
+WHERE Id = 3
+
+ALTER table test ADD code INT;
+
+UPDATE test
+SET id = 1
+WHERE name = 'Mahe'
+
+UPDATE test
+SET code = 
+	CASE 
+		WHEN Id = 1 THEN 22
+		WHEN Id = 2 THEN 11
+		WHEN Id = 3 THEN 33
+		WHEN Id = 4 THEN 44
+		WHEN Id = 5 THEN 55
+	END
+WHERE ID in (1,2,3,4,5);
+
+
+ALTER TABLE test ADD gender VARCHAR(10)
+ALTER TABLE test drop column gender
+
+UPDATE test
+SET gender = 
+	CASE 
+		WHEN Id = 1 THEN 'M'
+		when Id = 2 THEN 'F'
+		WHEN Id = 3 THEN 'M'
+		WHEN Id = 4 THEN 'F'
+		WHEN Id = 5 THEN 'M'
+	END
+WHERE Id in (1,2,3,4,5)
+
+
+ALTER TABLE test ADD marks INT;
+
+SELECT * FROM test
+
+UPDATE test
+SET marks = 
+	CASE 
+		WHEN Id = 1 THEN 20
+		WHEN Id = 2 THEN 10
+		WHEN Id = 3 THEN 30
+		WHEN Id = 4 THEN 50
+		WHEN Id = 5 THEN 40
+	END
+WHERE marks is NULL
+
+
